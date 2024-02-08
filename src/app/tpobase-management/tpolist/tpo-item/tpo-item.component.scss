@@ -1,0 +1,32 @@
+.tpo-item {
+  cursor: pointer;
+  background-color: #F5F5F5;
+  border-radius: 16px;
+  transition: 0.4s;
+
+  &-title {
+    color: #002021;
+  }
+
+  &:hover {
+    background-color: #e8e8e8;
+  }
+
+  &-verb {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+
+    &-1 {
+      background-color: #AEF596;
+    }
+
+    &-2 {
+      background-color: #BCEBEE;
+    }
+
+    &-3 {
+      background-color: #FFDAD6;
+    }
+  }
+}

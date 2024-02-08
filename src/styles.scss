@@ -12,7 +12,34 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$client-tpo-manager-primary: mat.define-palette(mat.$indigo-palette);
+
+$my-primary: (
+  50: #f0f9e9,
+  100: #dbeec9,
+  200: #c3e3a6,
+  300: #abd882,
+  400: #98cf66,
+  500: #86c74b,
+  600: #77b743,
+  700: #2C6C1E,
+  800: #508e30,
+  900: #2c6c1e,
+  contrast: (50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: rgba(black, 0.87),
+    600: rgba(black, 0.87),
+    700: rgba(black, 0.87),
+    800: rgba(black, 0.87),
+    900: rgba(black, 0.87),
+  )
+);
+
+
+//$client-tpo-manager-primary: mat.define-palette(mat.$indigo-palette);
+$client-tpo-manager-primary: mat.define-palette($my-primary, $default: 700);
 $client-tpo-manager-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
@@ -37,3 +64,8 @@ $client-tpo-manager-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.text-primary {
+  color: #2C6C1E !important;
+}

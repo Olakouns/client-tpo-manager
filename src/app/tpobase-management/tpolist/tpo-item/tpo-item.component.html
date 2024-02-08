@@ -1,0 +1,42 @@
+<div class="tpo-item p-3">
+  <h6 class="mb-3">TPO_CREATE_SUBSCRIBER</h6>
+  <div class="row">
+    <div class="col-6 d-flex align-items-center">
+      <div class="tpo-item-verb tpo-item-verb-1 me-2 d-flex justify-content-center align-items-center">
+        <img src="assets/verb.svg" alt="" srcset="" class="w-50">
+      </div>
+      <div>
+        <h6 class="text-primary">Verb</h6>
+        <h6 class="mb-0">ADD</h6>
+      </div>
+    </div>
+
+    <div class="col-6 d-flex align-items-center">
+      <div class="tpo-item-verb tpo-item-verb-2 me-2 d-flex justify-content-center align-items-center">
+        <img src="assets/condition.svg" alt="" srcset="" class="w-50">
+      </div>
+      <div>
+        <h6 class="text-primary">Condition</h6>
+        <h6 class="mb-0">POST_PAID</h6>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-3 d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center">
+      <div class="tpo-item-verb tpo-item-verb-3 me-2 d-flex justify-content-center align-items-center">
+        <img src="assets/failure.svg" alt="" srcset="" class="w-50">
+      </div>
+      <div>
+        <h6 class="text-primary">TPO for failure</h6>
+        <h6 class="mb-0">TPO_DELETE_SUBSCRIBER</h6>
+      </div>
+    </div>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Item 1</button>
+    </mat-menu>
+  </div>
+</div>

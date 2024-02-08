@@ -1,0 +1,33 @@
+<app-sketch>
+  <div class="d-flex justify-content-center">
+    <mat-form-field appearance="outline" class="col-6">
+      <input matInput placeholder="Search">
+      <mat-icon matPrefix>search</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center">
+    <h4 class="mb-0 text-primary">System TPO list</h4>
+    <button mat-flat-button color="primary" class="rounded-5 p-4 flex-row-reverse">
+      Add
+      <mat-icon class="ms-2 me-0">add</mat-icon>
+    </button>
+  </div>
+
+  <div class="mt-4">
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <app-tpo-item></app-tpo-item>
+      </div>
+      <div class="col-md-4 mb-4">
+        <app-tpo-item></app-tpo-item>
+      </div>
+      <div class="col-md-4 mb-4">
+        <app-tpo-item></app-tpo-item>
+      </div>
+      <div class="col-md-4 mb-4">
+        <app-tpo-item></app-tpo-item>
+      </div>
+    </div>
+  </div>
+</app-sketch>
