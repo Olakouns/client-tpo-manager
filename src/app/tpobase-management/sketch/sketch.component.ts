@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Slide } from '../../payload/slide';
 
 @Component({
   selector: 'app-sketch',
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './sketch.component.scss'
 })
 export class SketchComponent {
-
+  @Input({required: true}) inputData : Slide;
 }

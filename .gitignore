@@ -8,15 +8,13 @@
 
 # Node
 /node_modules
+/.angular
 npm-debug.log
 yarn-error.log
 
 # IDEs and editors
-.angular/
-.angular/cache
-/.angular/cache
-/.vscode
 .idea/
+.angular/
 .project
 .classpath
 .c9/
@@ -26,6 +24,7 @@ yarn-error.log
 
 # Visual Studio Code
 .vscode/*
+.angular/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
