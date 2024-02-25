@@ -7,6 +7,6 @@ export class TPOData {
     tpo: string;
     description: string;
     patterns: Array<TPOWorkOrder>;
-    isCritical: boolean;
+    critical: boolean;
     previousStatesData: Array<TPOWorkOrder>;
 }
