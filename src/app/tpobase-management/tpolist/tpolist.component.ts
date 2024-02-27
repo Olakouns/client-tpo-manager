@@ -14,6 +14,8 @@ import {Page} from "../../payload/page";
 import {LoaderSkeletonItemComponent} from "./loader-skeleton-item/loader-skeleton-item.component";
 import {EditTpoComponent} from "./edit-tpo/edit-tpo.component";
 import {MatDialog} from "@angular/material/dialog";
+import { DeleteTpoComponent } from './delete-tpo/delete-tpo.component';
+import { ApiResponse } from '../../payload/api-response';
 
 @Component({
   selector: 'app-tpolist',
@@ -25,7 +27,7 @@ import {MatDialog} from "@angular/material/dialog";
 export class TPOListComponent implements OnInit, Loadable {
   slide: Slide = {
     image: "assets/tpo-slide-1.png",
-    description: "\"Explorez l'avenir de vos configurations avec simplicité et précision. <br> Configurer, c'est innover!\""
+    description: "\"Explore the future of your configurations with simplicity and precision. <br> Configuring is innovating!\""
   };
   tposPage: Page<TPOData> = new Page<TPOData>();
   loading: boolean;
@@ -46,7 +48,7 @@ export class TPOListComponent implements OnInit, Loadable {
       next: response => {
         this.loading = false;
         this.tposPage = response;
-        console.log(this.tposPage);
+        // console.log(this.tposPage);
       },
       error: error => {
         this.loading = false;
@@ -75,6 +77,32 @@ export class TPOListComponent implements OnInit, Loadable {
       next: (response: TPOData) => {
         if (response) {
           this.tposPage.content.unshift(response);
+        }
+      }
+    })
+  }
+
+  onSearch(search : string) {
+    // todo : make search here
+    console.log(search);
+  }
+
+  onDeleteTpo(tpo : TPOData) { 
+    
+    const dialog = this.dialog.open(DeleteTpoComponent, {
+      width: '700px',
+      enterAnimationDuration: '250ms',
+      exitAnimationDuration: '250ms',
+      data : tpo.id
+    });
+
+    dialog.afterClosed().subscribe({
+      next: (response: ApiResponse) => {
+        if (response.success) {
+          let index = this.tposPage.content.findIndex(value => value.id == tpo.id);
+          if (index != -1) {
+            this.tposPage.content.splice(index, 1);
+          }
         }
       }
     })

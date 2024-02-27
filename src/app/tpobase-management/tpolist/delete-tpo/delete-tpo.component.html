@@ -1,0 +1,16 @@
+<mat-dialog-content>
+    <div class="my-dialog">
+        <h4 class="my-dialog-title text-center">Suppression</h4>
+        <div *ngIf="hasError" class="alert alert-danger">
+            {{errorMessage}}
+        </div>
+        <p class="mt-4 text-center mb-0">Êtes-vous sûr de vouloir supprimer cet TPO ?</p>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions class="d-flex justify-content-center w-100 p-4">
+    <button mat-flat-button color="warn"(click)="onDeleteTpo()" class="rounded-5 p-4 me-4" *ngIf="!isDeleting">Oui</button>
+    <button mat-flat-button color="primary" mat-dialog-close class="rounded-5 p-4" *ngIf="!isDeleting">Non</button>
+
+    <mat-spinner diameter="25" color="primary" *ngIf="isDeleting"></mat-spinner>
+</mat-dialog-actions>
+  

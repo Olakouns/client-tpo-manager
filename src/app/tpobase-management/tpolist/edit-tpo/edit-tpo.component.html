@@ -1,6 +1,10 @@
 <mat-dialog-content>
   <div class="my-dialog">
     <h4 class="my-dialog-title text-center">Ajouter</h4>
+
+    <div class="alert alert-danger" *ngIf="hasError">
+      {{errorMessage}}
+    </div>
     <!--  form-->
     <div class="mt-4">
 
@@ -23,7 +27,7 @@
           <textarea matInput placeholder="Simple description" formControlName="description"></textarea>
         </mat-form-field>
 
-        <mat-slide-toggle color="primary" formControlName="isCritical">Is this TPO critical?</mat-slide-toggle>
+        <mat-slide-toggle color="primary" formControlName="critical">Is this TPO critical?</mat-slide-toggle>
 
         <div class="d-flex justify-content-center align-items-center" *ngIf="!isLoading">
           <button mat-flat-button color="primary" class="rounded-5 p-4 close-btn me-4" type="button"

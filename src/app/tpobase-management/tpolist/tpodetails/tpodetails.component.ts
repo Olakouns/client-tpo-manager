@@ -12,6 +12,6 @@ import { Slide } from '../../../payload/slide';
 export class TPODetailsComponent {
   slide : Slide = {
     image: "assets/tpo-slide-1.png",
-    description: "\"Explorez l'avenir de vos configurations avec simplicité et précision. <br> Configurer, c'est innover!\""
+    description: "\"Explore the future of your configurations with simplicity and precision. <br> Configuring is innovating!\""
   };
 }

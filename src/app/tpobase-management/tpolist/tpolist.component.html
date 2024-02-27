@@ -1,7 +1,7 @@
 <app-sketch [inputData]="slide">
   <div class="d-flex justify-content-center">
     <mat-form-field appearance="outline" class="col-6">
-      <input matInput placeholder="Search">
+      <input matInput placeholder="Search" #search (keyup.enter)="onSearch(search.value)">
       <mat-icon matPrefix>search</mat-icon>
     </mat-form-field>
   </div>
@@ -26,7 +26,7 @@
       } @else {
         @for (item of tposPage.content; track $index) {
           <div class="col-md-4 mb-4">
-            <app-tpo-item [tpo]="item"></app-tpo-item>
+            <app-tpo-item [tpo]="item" (onDelete)="onDeleteTpo($event)"></app-tpo-item>
           </div>
         }
       }

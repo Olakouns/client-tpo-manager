@@ -24,11 +24,11 @@ export class ApiService {
     return this.httpclient.get<Page<TPOData>>(`${environment.BASE_URL}/tpo-manager/tpo-data/page`);
   }
 
-  createTpoData(tpoData: TPOData): Observable<TPOData> {
+  createTpoData(tpoData: TPOData | any): Observable<TPOData> {
     return this.httpclient.post<TPOData>(`${environment.BASE_URL}/tpo-manager/tpo-data`, tpoData);
   }
 
-  updateTpoData(tpoDataId: number, tpoData: TPOData): Observable<TPOData> {
+  updateTpoData(tpoDataId: number, tpoData: TPOData | any): Observable<TPOData> {
     return this.httpclient.put<TPOData>(`${environment.BASE_URL}/tpo-manager/tpo-data/${tpoDataId}`, tpoData);
   }
 
