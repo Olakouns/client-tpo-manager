@@ -16,7 +16,6 @@ import { DeleteTpoComponent } from '../delete-tpo/delete-tpo.component';
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
-    MatMenuModule,
     NgIf
   ],
   templateUrl: './tpo-item.component.html',
