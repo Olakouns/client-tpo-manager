@@ -74,3 +74,71 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .c-pointer{
   cursor: pointer;
 }
+
+.tpo-item {
+  cursor: pointer;
+  background-color: #F5F5F5;
+  border-radius: 16px;
+  transition: 0.4s;
+
+  &-title {
+    color: #002021;
+  }
+
+  &:hover {
+    background-color: #e8e8e8;
+  }
+
+  &-verb {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    min-width: 4rem;
+    min-height: 4rem;
+
+    &-1 {
+      background-color: #AEF596;
+    }
+
+    &-2 {
+      background-color: #BCEBEE;
+    }
+
+    &-3 {
+      background-color: #FFDAD6;
+    }
+  }
+}
+
+.danger-bar {
+  width: 5px;
+  background-color: #FFDAD6;
+  height: 50%;
+  top: 25%;
+}
+
+.text-danger-custom {
+  color: #BA1A1A;
+}
+
+.close-btn {
+  border: 1px solid #BA1A1A !important;
+  color: #BA1A1A !important;
+  background-color: transparent;
+  transition: 0.5s;
+
+  &:hover {
+    background-color: #BA1A1A !important;
+    color: white !important;
+  }
+}
+
+
+.my-dialog-title{
+  color: #2C6C1E;
+}
+
+.my-dialog{
+  padding: 16px;
+}
+
