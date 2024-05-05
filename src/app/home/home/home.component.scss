@@ -1,0 +1,30 @@
+.home-content {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+
+  &-left {
+    width: 50%;
+  }
+
+  &-right {
+    width: 44%;
+    padding: 14px;
+  }
+}
+
+.action{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+
+.global-content{
+  background-color: white;
+  height: 85vh;
+  width: 70vw;
+  border-radius: 4px;
+}

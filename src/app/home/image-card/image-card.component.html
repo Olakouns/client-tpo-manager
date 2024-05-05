@@ -1,0 +1,18 @@
+<div class="h-100 card-right p-relative">
+  <img class="image-slide w-100" [src]="'assets/' +currentSlide.image" alt="" srcset="">
+  <div class="card-shadow">
+    <div class="card-shadow-logo">
+<!--      <img src="assets/P-AL.svg" alt="" srcset="">-->
+    </div>
+    <div class="card-shadow-content">
+      <h4>{{currentSlide.title}}</h4>
+      <p>{{currentSlide.description}}</p>
+
+      <div class="circle-indicator">
+        <div [ngClass]="{'circle-indicator-item-active': currentSlide.id == 1}" class="circle-indicator-item"></div>
+        <div [ngClass]="{'circle-indicator-item-active': currentSlide.id == 2}" class="circle-indicator-item"></div>
+        <div [ngClass]="{'circle-indicator-item-active': currentSlide.id == 3}" class="circle-indicator-item"></div>
+      </div>
+    </div>
+  </div>
+</div>
