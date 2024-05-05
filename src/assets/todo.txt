@@ -1,0 +1,4 @@
+- Ajouter les failures step pour un work order
+- Reflechir sur le critical step  | si c'est a definir par l'utilisateur ou par le systeme
+- Ajouter la page pour la configurtion des equipements
+- Terminer le login page
