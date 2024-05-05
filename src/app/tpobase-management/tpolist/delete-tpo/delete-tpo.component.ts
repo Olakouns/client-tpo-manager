@@ -27,7 +27,6 @@ export class DeleteTpoComponent {
 
   onDeleteTpo() {
     this.isDeleting = true;
-
     this.apiService.deleteTpoData(this.data).subscribe({
       next: response => {
         this.isDeleting = false;

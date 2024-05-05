@@ -11,6 +11,7 @@ import { MonacoEditorModule } from 'ngx-monaco-editor';
     CommonModule,
     HomeRoutingModule,
     MonacoEditorModule.forRoot()
-  ]
+  ],
+  exports: [MonacoEditorModule]
 })
 export class HomeModule { }

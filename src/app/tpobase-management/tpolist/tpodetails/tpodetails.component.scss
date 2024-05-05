@@ -1,3 +1,12 @@
 .tpo-center-mg{
   margin: 0 8rem;
 }
+
+.tpo-center-mg-2{
+  margin: 0 0 0 8rem;
+}
+
+::ng-deep .mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  background-color: #b94840 !important;
+  color: white;
+}

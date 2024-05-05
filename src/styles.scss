@@ -124,7 +124,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .close-btn {
   border: 1px solid #BA1A1A !important;
   color: #BA1A1A !important;
-  background-color: transparent;
+  background-color: transparent !important;
   transition: 0.5s;
 
   &:hover {
@@ -142,3 +142,29 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   padding: 16px;
 }
 
+
+.wo-class{
+  background-color: rgba(174, 245, 150, 0.5);
+  &-title {
+    color: #2C6C1E;
+  }
+  &-name {
+    color: #002021;
+  }
+  &-direction{
+    //width: 11.12%;
+  }
+}
+
+.wo-class-2{
+  background-color: rgba(255, 218, 214, 0.5);
+  &-title {
+    color: #BA1A1A;
+  }
+  &-name {
+    color: #002021;
+  }
+  &-direction{
+    //width: 11.12%;
+  }
+}
