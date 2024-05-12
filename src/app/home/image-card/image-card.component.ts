@@ -8,24 +8,24 @@ import { AfterContentInit, Component, NgZone, OnDestroy, OnInit } from '@angular
   templateUrl: './image-card.component.html',
   styleUrl: './image-card.component.scss'
 })
-export class ImageCardComponent implements OnInit, OnDestroy { 
+export class ImageCardComponent implements OnInit, OnDestroy {
   slides = [{
     id: 1,
     image: "slide-1.png",
-    title: "Simplicité d'Abonnement",
-    description: "Facilitez la vie de vos utilisateurs avec une gestion aisée des abonnés pour une expérience téléphonique sans soucis !"
+    title: "Simplified configuration",
+    description: "Customize your TPOs in just a few clicks with our intuitive interface."
   },
   {
     id: 2,
     image: "slide-2.png",
-    title: "Fluidité Financière",
-    description: "Simplifiez la facturation pour une gestion financière en toute simplicité et tranquillité d'esprit"
+    title: "Centralized Management",
+    description: "Control all your TPOs from one place, for efficient and hassle-free management."
   },
   {
     id: 3,
     image: "slide-3.png",
-    title: "Analyse Téléphonique Agile",
-    description: "Simplifiez la gestion des CDR pour une visibilité téléphonique optimale, permettant une analyse fluide des activités d'appels."
+    title: "Advanced Customization",
+    description: "Tailor your TPOs to your specific needs with our advanced customization options."
   }]
   currentSlide = this.slides[0];
 

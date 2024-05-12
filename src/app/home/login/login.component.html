@@ -1,0 +1,34 @@
+<div class="mt-4">
+
+  <div>
+    <h1 class="text-center">Welcome back! 👋</h1>
+    <p class="fs-6 text-black-50 text-center">Please enter your login information</p>
+<!--    <p class="fs-6 text-black-50 text-center">Simplify subscriber creation and management for hassle-free telephone services</p>-->
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="email" formControlName="email" type="email">
+      <mat-error *ngIf="form.controls['email']?.hasError('required')">Required field</mat-error>
+      <mat-error *ngIf="form.controls['email']?.hasError('email')">Field must be a valid email</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Password</mat-label>
+      <input matInput placeholder="password" formControlName="password" [type]="hide ? 'password' : 'text'">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="form.controls['password']?.hasError('required')">Required field</mat-error>
+    </mat-form-field>
+
+    <div class="d-flex justify-content-center align-items-center" *ngIf="!isLoading">
+      <button  mat-flat-button color="primary" class="rounded-5 p-4 w-25" type="submit" [disabled]="!form.valid">sign in</button>
+    </div>
+
+    <div class="d-flex justify-content-center" *ngIf="isLoading">
+      <mat-spinner diameter="20" mode="indeterminate"></mat-spinner>
+    </div>
+  </form>
+</div>

@@ -6,6 +6,7 @@ import {Observable} from "rxjs";
 import {Page} from "../payload/page";
 import {ApiResponse} from "../payload/api-response";
 import {TPOWorkOrder} from "../models/tpowork-order";
+import {ConstantConfig} from "../models/constant-config";
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +53,7 @@ export class ApiService {
   addTpoWordOrder(tpoDataId: number, tpoWorkOrder: TPOWorkOrder | any): Observable<TPOWorkOrder> {
     return this.httpclient.put<TPOWorkOrder>(`${environment.BASE_URL}/tpo-manager/tpo-data/${tpoDataId}/tpo-word-order`, tpoWorkOrder);
   }
+
   addManyTpoWordOrder(tpoDataId: number, tpoWorkOrders: Array<TPOWorkOrder>): Observable<ApiResponse> {
     return this.httpclient.put<ApiResponse>(`${environment.BASE_URL}/tpo-manager/tpo-data/${tpoDataId}/tpo-word-orders/add-many`, tpoWorkOrders);
   }
@@ -76,4 +78,19 @@ export class ApiService {
     return this.httpclient.get<Array<TPOWorkOrder>>(`${environment.BASE_URL}/tpo-manager/tpo-word-orders`);
   }
 
+  getAllConstantConfig(): Observable<Array<ConstantConfig>> {
+    return this.httpclient.get<Array<any>>(`${environment.BASE_URL}/tpo-manager/constant-config`);
+  }
+
+  createConstantConfig(constantConfig: ConstantConfig | any): Observable<ConstantConfig> {
+    return this.httpclient.post<ConstantConfig>(`${environment.BASE_URL}/tpo-manager/constant-config`, constantConfig);
+  }
+
+  updateConstantConfig(constantConfigId: number, constantConfig: ConstantConfig | any): Observable<ConstantConfig> {
+    return this.httpclient.put<ConstantConfig>(`${environment.BASE_URL}/tpo-manager/constant-config/${constantConfigId}`, constantConfig);
+  }
+
+  deleteConstantConfig(constantConfigId: number): Observable<ApiResponse> {
+    return this.httpclient.delete<ApiResponse>(`${environment.BASE_URL}/tpo-manager/constant-config/${constantConfigId}`);
+  }
 }
