@@ -54,6 +54,11 @@ export class ApiService {
     return this.httpclient.put<TPOWorkOrder>(`${environment.BASE_URL}/tpo-manager/tpo-data/${tpoDataId}/tpo-word-order`, tpoWorkOrder);
   }
 
+  addWordOrder(tpoWorkOrder: TPOWorkOrder | any): Observable<TPOWorkOrder> {
+    return this.httpclient.post<TPOWorkOrder>(`${environment.BASE_URL}/tpo-manager/tpo-word-order`, tpoWorkOrder);
+  }
+
+
   addManyTpoWordOrder(tpoDataId: number, tpoWorkOrders: Array<TPOWorkOrder>): Observable<ApiResponse> {
     return this.httpclient.put<ApiResponse>(`${environment.BASE_URL}/tpo-manager/tpo-data/${tpoDataId}/tpo-word-orders/add-many`, tpoWorkOrders);
   }
@@ -72,6 +77,10 @@ export class ApiService {
 
   addTpoWordOrderFailureToWK(tpoWordOrderId: number, tpoWorkOrderFailure: TPOWorkOrder): Observable<TPOWorkOrder> {
     return this.httpclient.put<TPOWorkOrder>(`${environment.BASE_URL}/tpo-manager/tpo-word-order/${tpoWordOrderId}/failure`, tpoWorkOrderFailure);
+  }
+
+  addTpoWordOrderFailuresToWK(tpoWordOrderId: number, tpoWorkOrderFailure: Array<TPOWorkOrder>): Observable<ApiResponse> {
+    return this.httpclient.put<ApiResponse>(`${environment.BASE_URL}/tpo-manager/tpo-word-order/${tpoWordOrderId}/failures`, tpoWorkOrderFailure);
   }
 
   getAllTpoWordOrders(): Observable<Array<TPOWorkOrder>> {

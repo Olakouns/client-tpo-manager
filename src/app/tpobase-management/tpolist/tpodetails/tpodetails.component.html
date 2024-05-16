@@ -73,6 +73,7 @@
               </button>
               <mat-menu #menu="matMenu">
                 <button mat-menu-item (click)="editWorkOrder(wk)">Edit</button>
+                <button mat-menu-item (click)="onAddFailureWk(wk)">{{wk.linkedList.length == 0 ? "Add failure WK" : "Update failure WK"}}</button>
                 <button mat-menu-item (click)="onRemoveWkFromTpo(wk)">Remove</button>
               </mat-menu>
             </div>

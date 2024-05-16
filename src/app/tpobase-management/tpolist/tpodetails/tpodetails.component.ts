@@ -19,6 +19,7 @@ import {workerData} from "worker_threads";
 import {EditFlowComponent} from "./edit-flow/edit-flow.component";
 import {UseWorkOrderComponent} from "./use-work-order/use-work-order.component";
 import {ConfirmationDialogComponent} from "./confirmation-dialog/confirmation-dialog.component";
+import {EditFailureStepWkComponent} from "./edit-failure-step-wk/edit-failure-step-wk.component";
 
 @Component({
   selector: 'app-tpodetails',
@@ -84,7 +85,7 @@ export class TPODetailsComponent implements OnInit {
         this.isLoadingPattern = false;
         this.tpoWorkOrders = response;
         for (let i = response.length - 1; i >= 0; i--) {
-          this.failureTpoWorkOrders = [...this.failureTpoWorkOrders, ...response[i].tpoWorkOrderFailure];
+          this.failureTpoWorkOrders = [...this.failureTpoWorkOrders, ...response[i].linkedList];
         }
       },
       error: (error: HttpErrorResponse) => {
@@ -192,7 +193,7 @@ export class TPODetailsComponent implements OnInit {
         if (response.length > 0) {
           this.tpoWorkOrders.push(...response);
           this.updateFailureWk();
-          console.log(response);
+          // console.log(response);
           // this.tpoWorkOrders = [...this.tpoWorkOrders, ...response];
         }
       }
@@ -231,7 +232,30 @@ export class TPODetailsComponent implements OnInit {
   updateFailureWk() {
     this.failureTpoWorkOrders = [];
     for (let i = this.tpoWorkOrders.length - 1; i >= 0; i--) {
-      this.failureTpoWorkOrders = [...this.failureTpoWorkOrders, ...this.tpoWorkOrders[i].tpoWorkOrderFailure];
+      this.failureTpoWorkOrders = [...this.failureTpoWorkOrders, ...this.tpoWorkOrders[i].linkedList];
     }
+  }
+
+  onAddFailureWk(wk: TPOWorkOrder) {
+    const dialog = this.dialog.open(EditFailureStepWkComponent, {
+      width: '700px',
+      minHeight: '500px',
+      enterAnimationDuration: '250ms',
+      exitAnimationDuration: '250ms',
+      data: JSON.parse(JSON.stringify(wk))
+    });
+
+    dialog.afterClosed().subscribe({
+      next: (response: TPOWorkOrder) => {
+        this.tpoWorkOrders = this.tpoWorkOrders.map(item => {
+          if (item.id == response.id) {
+            return response;
+          }
+          return item;
+        });
+
+        this.updateFailureWk();
+      }
+    });
   }
 }

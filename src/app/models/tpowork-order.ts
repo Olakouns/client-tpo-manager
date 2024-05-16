@@ -6,4 +6,5 @@ export class TPOWorkOrder {
   template: string;
   equipment: string;
   tpoWorkOrderFailure: Array<TPOWorkOrder>;
+  linkedList: Array<TPOWorkOrder>;
 }

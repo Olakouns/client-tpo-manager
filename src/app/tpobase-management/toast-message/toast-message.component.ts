@@ -11,7 +11,6 @@ import {MAT_SNACK_BAR_DATA} from "@angular/material/snack-bar";
   styleUrl: './toast-message.component.scss'
 })
 export class ToastMessageComponent {
-
   constructor(@Inject(MAT_SNACK_BAR_DATA) public message: string) {
   }
 }

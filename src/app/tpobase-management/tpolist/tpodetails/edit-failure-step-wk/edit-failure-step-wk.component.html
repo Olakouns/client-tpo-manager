@@ -1,0 +1,43 @@
+<div class="pt-4">
+  <h4 class="my-dialog-title text-center">{{diagTitle}}</h4>
+  <mat-dialog-content>
+    <div class="my-dialog">
+      <div class="alert alert-danger" *ngIf="hasError">
+        {{errorMessage}}
+      </div>
+
+      <div class="mt-4">
+        <mat-form-field  class="w-100" appearance="outline" >
+          <mat-select [formControl]="toppings" (ngModelChange)="onChangeAction($event)" multiple placeholder="choose one or more wk">
+            @for (wk of tpoWorkOrders; track wk.id) {
+            <mat-option [value]="wk">{{wk.webServiceName}} ({{wk.equipment}})</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <div class="mt-r p-4 bg-success-subtle rounded-3">
+          Don't still find the work order you are looking for? <a class="text-decoration-none text-primary fw-bold c-pointer" (click)="openDialog()">Click here</a> to create a new work order.
+        </div>
+
+        <div class="mt-4">
+          <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+            @for (tpoWorkOrder of tpoWorkSelected; track tpoWorkOrder) {
+            <div class="example-box" cdkDrag>{{tpoWorkOrder.webServiceName}}  - {{tpoWorkOrder.equipment}}</div>
+            }
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-center align-items-center mt-4" *ngIf="!isLoading">
+          <button mat-flat-button color="primary" class="rounded-5 p-4 close-btn me-4" type="button"
+                  (click)="onClose()">Close
+          </button>
+          <button mat-flat-button color="primary" class="rounded-5 p-4" type="submit" (click)="onSave()">Save</button>
+        </div>
+
+        <div class="d-flex justify-content-center" *ngIf="isLoading">
+          <mat-spinner diameter="20" mode="indeterminate"></mat-spinner>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+</div>

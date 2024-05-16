@@ -71,7 +71,7 @@ export class AddWorkOrderComponent {
                 workOrder: TPOWorkOrder,
               },
               private apiService: ApiService) {
-    if (data.workOrder) {
+    if (data?.workOrder) {
       this.isEdit = true;
       this.diagTitle = 'Edit work order';
       this.tpoWorkOrder = data.workOrder;
@@ -80,7 +80,6 @@ export class AddWorkOrderComponent {
   }
 
   onSubmit() {
-    console.log(this.form.value);
     if (this.form.invalid) {
       return
     }
@@ -99,16 +98,30 @@ export class AddWorkOrderComponent {
         }
       });
     } else {
-      this.apiService.addTpoWordOrder(this.data.tpoId, this.form.value).subscribe({
-        next: response => {
-          this.dialogRef.close(response);
-        },
-        error: (error) => {
-          this.isLoading = false;
-          this.hasError = true;
-          this.errorMessage = error.error.message;
-        }
-      });
+      if (this.data?.tpoId) {
+        this.apiService.addTpoWordOrder(this.data.tpoId, this.form.value).subscribe({
+          next: response => {
+            this.dialogRef.close(response);
+          },
+          error: (error) => {
+            this.isLoading = false;
+            this.hasError = true;
+            this.errorMessage = error.error.message;
+          }
+        });
+      } else {
+        this.apiService.addWordOrder(this.form.value).subscribe({
+          next: response => {
+            this.dialogRef.close(response);
+          },
+          error: (error) => {
+            this.isLoading = false;
+            this.hasError = true;
+            this.errorMessage = error.error.message;
+          }
+        });
+      }
+
     }
   }
 
