@@ -1,0 +1,23 @@
+<div class="constant-item d-flex justify-content-between align-items-center p-3">
+  <div class="d-flex align-items-center">
+    <div class="constant-item-circle me-3"
+         [class]="constantConfig.keyName == 'IN' ? 'constant-item-circle-1' : 'constant-item-circle-2'">{{constantConfig.keyName}}</div>
+    <div>
+      <h5 class="mb">{{getConstantName(constantConfig.keyName)}}</h5>
+      <a class="d-flex align-items-center c-pointer text-decoration-none text-black-50" [href]="constantConfig.wsdlDoc"
+         target="_blank">
+        <span class="me-3">View docs</span>
+        <mat-icon [style]="{'color': constantConfig.keyName == 'IN' ? '#AEF596' : '#BCEBEE'}">visibility</mat-icon>
+      </a>
+    </div>
+  </div>
+  <div>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="onEditConstant()">Edit</button>
+      <button mat-menu-item (click)="onDelete.emit(constantConfig)">Delete</button>
+    </mat-menu>
+  </div>
+</div>

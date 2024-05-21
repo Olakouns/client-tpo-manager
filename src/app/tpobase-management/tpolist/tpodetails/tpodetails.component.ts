@@ -20,6 +20,7 @@ import {EditFlowComponent} from "./edit-flow/edit-flow.component";
 import {UseWorkOrderComponent} from "./use-work-order/use-work-order.component";
 import {ConfirmationDialogComponent} from "./confirmation-dialog/confirmation-dialog.component";
 import {EditFailureStepWkComponent} from "./edit-failure-step-wk/edit-failure-step-wk.component";
+import {AddSystemStateComponent} from "./add-system-state/add-system-state.component";
 
 @Component({
   selector: 'app-tpodetails',
@@ -242,7 +243,12 @@ export class TPODetailsComponent implements OnInit {
       minHeight: '500px',
       enterAnimationDuration: '250ms',
       exitAnimationDuration: '250ms',
-      data: JSON.parse(JSON.stringify(wk))
+      data: JSON.parse(JSON.stringify(
+        {
+          wk: wk,
+          failureTpoWorkOrders: this.failureTpoWorkOrders
+        }
+      ))
     });
 
     dialog.afterClosed().subscribe({
@@ -255,6 +261,22 @@ export class TPODetailsComponent implements OnInit {
         });
 
         this.updateFailureWk();
+      }
+    });
+  }
+
+  onAddSystemState() {
+    const dialog = this.dialog.open(AddSystemStateComponent, {
+      width: '700px',
+      minHeight: '500px',
+      enterAnimationDuration: '250ms',
+      exitAnimationDuration: '250ms',
+      data: JSON.parse(JSON.stringify(this.tpoData))
+    });
+
+    dialog.afterClosed().subscribe({
+      next: (response: TPOData) => {
+       // todo: Implement this
       }
     });
   }

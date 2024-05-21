@@ -8,6 +8,7 @@ import {MatProgressSpinner, MatProgressSpinnerModule} from "@angular/material/pr
 import {MatSlideToggle} from "@angular/material/slide-toggle";
 import {NgIf} from "@angular/common";
 import {MatIcon, MatIconModule} from "@angular/material/icon";
+import {LoginService} from "../../services/login.service";
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,7 @@ import {MatIcon, MatIconModule} from "@angular/material/icon";
 export class LoginComponent {
 
   form = this.formBuilder.group({
-    email: ['', [Validators.required, Validators.email]],
+    username: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]]
   });
 
@@ -39,11 +40,21 @@ export class LoginComponent {
   hasError = false;
 
   constructor(public formBuilder: FormBuilder,
-              private apiService: ApiService) {
+              private apiService: LoginService) {
   }
 
   onSubmit() {
     this.isLoading = true;
-
+    this.apiService.login(this.form.value).subscribe({
+      next: response => {
+        this.isLoading = false;
+        this.hasError = false;
+      },
+      error: err => {
+        this.isLoading = false;
+        this.hasError = true;
+        this.errorMessage = err.errorMessage ? err.errorMessage : "Check your username and password";
+      }
+    });
   }
 }

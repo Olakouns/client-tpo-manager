@@ -19,14 +19,6 @@
           Don't still find the work order you are looking for? <a class="text-decoration-none text-primary fw-bold c-pointer" (click)="openDialog()">Click here</a> to create a new work order.
         </div>
 
-        <div class="mt-4">
-          <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-            @for (tpoWorkOrder of tpoWorkSelected; track tpoWorkOrder) {
-            <div class="example-box" cdkDrag>{{tpoWorkOrder.webServiceName}}  - {{tpoWorkOrder.equipment}}</div>
-            }
-          </div>
-        </div>
-
         <div class="d-flex justify-content-center align-items-center mt-4" *ngIf="!isLoading">
           <button mat-flat-button color="primary" class="rounded-5 p-4 close-btn me-4" type="button"
                   (click)="onClose()">Close

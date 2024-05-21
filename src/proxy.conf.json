@@ -6,5 +6,12 @@
         "^/tls": "tls"
       }
     },
+    "/login": {
+      "target": "http://localhost:8090",
+      "secure": false,
+      "pathRewrite": {
+        "^/tls": "tls"
+      }
+    },
     "logLevel": "debug"
   }

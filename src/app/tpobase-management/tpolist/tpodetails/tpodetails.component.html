@@ -39,6 +39,11 @@
       </div>
 
       <div class="d-flex justify-content-center align-items-center mt-5">
+        <button *ngIf="tpoData.critical" mat-stroked-button color="primary" class="rounded-5 p-4 flex-row-reverse me-5" (click)="onAddSystemState()">
+          Add system state
+          <mat-icon class="ms-2 me-0">add</mat-icon>
+        </button>
+
         <button mat-stroked-button color="primary" class="rounded-5 p-4 flex-row-reverse me-5" (click)="onEditFlow()">
           Edit flow
           <mat-icon class="ms-2 me-0">edit</mat-icon>
@@ -64,7 +69,7 @@
         <ng-container *ngFor="let wk of tpoWorkOrders; let index = index">
           <div class="d-flex align-items-center justify-content-between wo-class p-3 rounded-4 col-2 mb-4">
             <div>
-              <h6 class="wo-class-title fw-normal">{{wk.equipment}}</h6>
+              <h6 class="wo-class-title fw-normal">{{wk?.equipment}}</h6>
               <h6 class="fw-normal wo-class-name">{{wk.webServiceName}}</h6>
             </div>
             <div>
@@ -92,8 +97,8 @@
         <ng-container *ngFor="let wk of failureTpoWorkOrders; let index = index">
           <div class="d-flex align-items-center justify-content-between wo-class-2 p-3 rounded-4 col-2 mb-4">
             <div>
-              <h6 class="wo-class-2-title fw-normal">{{wk.equipment}}</h6>
-              <h6 class="fw-normal wo-class-2-name">{{wk.webServiceName}}</h6>
+              <h6 class="wo-class-2-title fw-normal">{{wk?.equipment}}</h6>
+              <h6 class="fw-normal wo-class-2-name">{{wk?.webServiceName}}</h6>
             </div>
             <div>
               <button mat-icon-button [matMenuTriggerFor]="menu">

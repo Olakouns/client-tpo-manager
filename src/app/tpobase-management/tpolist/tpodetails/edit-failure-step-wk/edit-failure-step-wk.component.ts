@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogContent, MatDialogRef} from "@angular/material/dialog";
 import {NgIf} from "@angular/common";
-import {FormBuilder, FormControl, ReactiveFormsModule} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {TPOWorkOrder} from "../../../../models/tpowork-order";
 import {ApiService} from "../../../../services/api.service";
 import {CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray} from "@angular/cdk/drag-drop";
@@ -27,7 +27,8 @@ import {ToastMessageComponent} from "../../../toast-message/toast-message.compon
     MatOption,
     CdkDropList,
     CdkDrag,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
   ],
   templateUrl: './edit-failure-step-wk.component.html',
   styleUrl: './edit-failure-step-wk.component.scss'
@@ -39,18 +40,26 @@ export class EditFailureStepWkComponent implements OnInit {
   hasError = false;
   tpoWorkOrders: Array<TPOWorkOrder> = new Array<TPOWorkOrder>();
   tpoWorkSelected: Array<TPOWorkOrder> = new Array<TPOWorkOrder>();
-  toppings = new FormControl('');
+  toppings : FormControl<TPOWorkOrder[] | null> = new FormControl([]);
 
 
   constructor(public dialogRef: MatDialogRef<EditFailureStepWkComponent>,
               public formBuilder: FormBuilder,
               public dialog: MatDialog,
-              @Inject(MAT_DIALOG_DATA) public data: TPOWorkOrder,
+              @Inject(MAT_DIALOG_DATA) public data: {
+                wk: TPOWorkOrder,
+                failureTpoWorkOrders: Array<TPOWorkOrder>
+              },
               private _snackBar: MatSnackBar,
               private apiService: ApiService) {
-    if (data.linkedList) {
-      this.tpoWorkSelected = data.linkedList.slice();
+    if (data.wk.linkedList) {
+      this.tpoWorkSelected = data.wk.linkedList.slice();
+      this.toppings = new FormControl(this.tpoWorkSelected);
     }
+  }
+
+  compareFn(c1: TPOWorkOrder, c2: TPOWorkOrder): boolean {
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
 
   ngOnInit(): void {
@@ -58,7 +67,11 @@ export class EditFailureStepWkComponent implements OnInit {
       next: response => {
         this.tpoWorkOrders = response;
         // remove all element that already exist in data.wk
-        this.tpoWorkOrders = this.tpoWorkOrders.filter(t => (this.data.id !== t.id));
+        this.tpoWorkOrders = this.tpoWorkOrders.filter(t => !this.data.failureTpoWorkOrders.some(value => value.id === t.id));
+        this.tpoWorkOrders = this.tpoWorkOrders.filter(t => (this.data.wk.id !== t.id));
+        this.tpoWorkOrders = [...this.tpoWorkOrders, ...this.data.wk.linkedList];
+        // console.log(this.data.failureTpoWorkOrders);
+        // this.tpoWorkOrders = this.tpoWorkOrders.filter(t => !this.data.failureTpoWorkOrders.some(value => value.id === t.id));
       },
       error: error => {
         this.hasError = true;
@@ -68,6 +81,7 @@ export class EditFailureStepWkComponent implements OnInit {
   }
 
   onChangeAction($event: Array<TPOWorkOrder>) {
+    // console.log($event);
     this.tpoWorkSelected = [...$event];
   }
 
@@ -81,7 +95,7 @@ export class EditFailureStepWkComponent implements OnInit {
 
   onSave() {
     this.isLoading = true;
-    this.apiService.addTpoWordOrderFailuresToWK(this.data.id, this.tpoWorkSelected).subscribe({
+    this.apiService.addTpoWordOrderFailuresToWK(this.data.wk.id, this.tpoWorkSelected).subscribe({
       next: response => {
         this.isLoading = false;
         this._snackBar.openFromComponent(ToastMessageComponent, {
@@ -90,8 +104,8 @@ export class EditFailureStepWkComponent implements OnInit {
           panelClass: ['bg-success']
         });
         // todo: SHow snackbar message
-        this.data.linkedList = this.tpoWorkSelected;
-        this.dialogRef.close(this.data);
+        this.data.wk.linkedList = this.tpoWorkSelected;
+        this.dialogRef.close(this.data.wk);
       },
       error: error => {
         this.isLoading = false;

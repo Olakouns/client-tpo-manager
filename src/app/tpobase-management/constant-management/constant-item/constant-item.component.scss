@@ -1,0 +1,22 @@
+.constant-item {
+  background-color: #F5F5F5;
+  border-radius: 16px;
+  &-circle{
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  &-circle-1{
+    background-color: #AEF596;
+  }
+
+  &-circle-2{
+    background-color: #BCEBEE;
+  }
+}
