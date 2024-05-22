@@ -1,14 +1,13 @@
-import {Component, Inject} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {ApiService} from "../../services/api.service";
-import {MatButton, MatButtonModule, MatIconButton} from "@angular/material/button";
-import {MatError, MatFormField, MatFormFieldModule, MatLabel} from "@angular/material/form-field";
-import {MatInput, MatInputModule} from "@angular/material/input";
-import {MatProgressSpinner, MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {MatSlideToggle} from "@angular/material/slide-toggle";
+import {MatButtonModule} from "@angular/material/button";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {NgIf} from "@angular/common";
-import {MatIcon, MatIconModule} from "@angular/material/icon";
+import {MatIconModule} from "@angular/material/icon";
 import {LoginService} from "../../services/login.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -40,7 +39,7 @@ export class LoginComponent {
   hasError = false;
 
   constructor(public formBuilder: FormBuilder,
-              private apiService: LoginService) {
+              private apiService: LoginService, private router : Router) {
   }
 
   onSubmit() {
@@ -49,6 +48,7 @@ export class LoginComponent {
       next: response => {
         this.isLoading = false;
         this.hasError = false;
+        this.router.navigateByUrl('tpo-management');
       },
       error: err => {
         this.isLoading = false;

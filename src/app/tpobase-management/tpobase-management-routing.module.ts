@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {TPOListComponent} from "./tpolist/tpolist.component";
 import { TPODetailsComponent } from './tpolist/tpodetails/tpodetails.component';
 import {ConstantManagementComponent} from "./constant-management/constant-management.component";
+import { WorkOrderManagementComponent } from './work-order-management/work-order-management.component';
 
 const routes: Routes = [
   {
@@ -10,6 +11,9 @@ const routes: Routes = [
   },
   {
     path: 'constant-config', component: ConstantManagementComponent
+  },
+  {
+    path: 'work-orders', component: WorkOrderManagementComponent
   },
   {
     path: ':tpoId', component: TPODetailsComponent

@@ -83,8 +83,8 @@ export class TPOListComponent implements OnInit, Loadable {
   }
 
   onSearch(search : string) {
-    // todo : make search here
-    console.log(search);
+    this.search = search;
+    this.loadData();
   }
 
   onDeleteTpo(tpo : TPOData) { 

@@ -1,0 +1,15 @@
+<div class="tpo-item d-flex align-items-center justify-content-between p-3 rounded-4 mb-4">
+    <div>
+      <h6 class="wo-class-title fw-normal">{{wk.equipment}}</h6>
+      <h6 class="fw-normal wo-class-name">{{wk.webServiceName}}</h6>
+    </div>
+    <div>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="editWorkOrder()">Edit</button>
+        <button mat-menu-item (click)="onAddFailureWk()">{{wk.linkedList.length == 0 ? "Add failure WK" : "Update failure WK"}}</button>
+      </mat-menu>
+    </div>
+</div>

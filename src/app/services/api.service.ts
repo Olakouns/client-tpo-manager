@@ -1,5 +1,5 @@
 import {inject, Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {TPOData} from "../models/tpodata";
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
@@ -22,7 +22,11 @@ export class ApiService {
   }
 
   getTpoData(search = "", page = 0, size = 50): Observable<Page<TPOData>> {
-    return this.httpclient.get<Page<TPOData>>(`${environment.BASE_URL}/tpo-manager/tpo-data/page`);
+    let query = new HttpParams()
+    .set('search', search)
+    .set('page', page)
+    .set('size', size);
+    return this.httpclient.get<Page<TPOData>>(`${environment.BASE_URL}/tpo-manager/tpo-data/page`, {params: query});
   }
 
   createTpoData(tpoData: TPOData | any): Observable<TPOData> {
@@ -52,6 +56,14 @@ export class ApiService {
 
   addTpoWordOrder(tpoDataId: number, tpoWorkOrder: TPOWorkOrder | any): Observable<TPOWorkOrder> {
     return this.httpclient.put<TPOWorkOrder>(`${environment.BASE_URL}/tpo-manager/tpo-data/${tpoDataId}/tpo-word-order`, tpoWorkOrder);
+  }
+
+  getWorkOrdersPage(search = "", page = 0, size = 50): Observable<Page<TPOWorkOrder>> {
+    let query = new HttpParams()
+    .set('search', search)
+    .set('page', page)
+    .set('size', size);
+    return this.httpclient.get<Page<TPOWorkOrder>>(`${environment.BASE_URL}/tpo-manager/tpo-word-orders/page`, {params: query});
   }
 
   addWordOrder(tpoWorkOrder: TPOWorkOrder | any): Observable<TPOWorkOrder> {
