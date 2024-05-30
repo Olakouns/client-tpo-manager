@@ -8,7 +8,7 @@
 
       <div class="mt-4">
         <mat-form-field  class="w-100" appearance="outline" >
-          <mat-select [formControl]="toppings" (ngModelChange)="onChangeAction($event)" [compareWith]="compareFn" multiple placeholder="choose one or more wk">
+          <mat-select [formControl]="toppings" (ngModelChange)="onChangeAction($event)" [compareWith]="compareFn" multiple placeholder="choose one or more WO">
             @for (wk of tpoWorkOrders; track wk.id) {
             <mat-option [value]="wk">{{wk.webServiceName}} ({{wk.equipment}})</mat-option>
             }

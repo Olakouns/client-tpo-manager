@@ -49,14 +49,14 @@
           <mat-icon class="ms-2 me-0">edit</mat-icon>
         </button>
 
-        <button mat-stroked-button color="primary" class="rounded-5 p-4 flex-row-reverse me-5"
+        <!-- <button mat-stroked-button color="primary" class="rounded-5 p-4 flex-row-reverse me-5"
                 (click)="onAddWorkOrder()">
           Add new WK
           <mat-icon class="ms-2 me-0">add</mat-icon>
-        </button>
+        </button> -->
 
         <button mat-stroked-button color="primary" class="rounded-5 p-4 flex-row-reverse" (click)="onUseWorkOrder()">
-          Use existing WK
+          Associate WO
           <mat-icon class="ms-2 me-0">loop</mat-icon>
         </button>
       </div>
@@ -77,8 +77,8 @@
                 <mat-icon>more_vert</mat-icon>
               </button>
               <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)="editWorkOrder(wk)">Edit</button>
-                <button mat-menu-item (click)="onAddFailureWk(wk)">{{wk.linkedList.length == 0 ? "Add failure WK" : "Update failure WK"}}</button>
+                <!-- <button mat-menu-item (click)="editWorkOrder(wk)">Edit</button> -->
+                <!-- <button mat-menu-item (click)="onAddFailureWk(wk)">{{wk.linkedList.length == 0 ? "Add failure WK" : "Update failure WK"}}</button> -->
                 <button mat-menu-item (click)="onRemoveWkFromTpo(wk)">Remove</button>
               </mat-menu>
             </div>
@@ -100,15 +100,15 @@
               <h6 class="wo-class-2-title fw-normal">{{wk?.equipment}}</h6>
               <h6 class="fw-normal wo-class-2-name">{{wk?.webServiceName}}</h6>
             </div>
-            <div>
+            <!-- <div>
               <button mat-icon-button [matMenuTriggerFor]="menu">
                 <mat-icon>more_vert</mat-icon>
               </button>
               <mat-menu #menu="matMenu">
                 <button mat-menu-item (click)="editWorkOrder(wk,true)">Edit</button>
-                <!--                <button mat-menu-item>Delete</button>-->
+                               <button mat-menu-item>Delete</button>
               </mat-menu>
-            </div>
+            </div> -->
           </div>
           <div class="wo-class-direction mb-4" *ngIf="failureTpoWorkOrders[index+1] && (index+1)%4 != 0">
             <img src="assets/arrow_next.svg" class="w-100" alt="" srcset="">

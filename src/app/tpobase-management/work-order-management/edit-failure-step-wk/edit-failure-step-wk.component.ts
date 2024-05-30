@@ -2,16 +2,16 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogContent, MatDialogRef} from "@angular/material/dialog";
 import {NgIf} from "@angular/common";
 import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {TPOWorkOrder} from "../../../../models/tpowork-order";
-import {ApiService} from "../../../../services/api.service";
+import {TPOWorkOrder} from "../../../models/tpowork-order";
+import {ApiService} from "../../../services/api.service";
 import {CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray} from "@angular/cdk/drag-drop";
 import {MatButton} from "@angular/material/button";
 import {MatFormField} from "@angular/material/form-field";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {MatOption, MatSelect} from "@angular/material/select";
-import {AddWorkOrderComponent} from "../add-work-order/add-work-order.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {ToastMessageComponent} from "../../../toast-message/toast-message.component";
+import {ToastMessageComponent} from "../../toast-message/toast-message.component";
+import { AddWorkOrderComponent } from '../add-work-order/add-work-order.component';
 
 @Component({
   selector: 'app-edit-failure-step-wk',

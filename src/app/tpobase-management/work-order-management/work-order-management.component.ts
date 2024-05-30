@@ -4,7 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { Slide } from '../../payload/slide';
 import { Page } from '../../payload/page';
 import { TPOWorkOrder } from '../../models/tpowork-order';
-import { AddWorkOrderComponent } from '../tpolist/tpodetails/add-work-order/add-work-order.component';
 import { SketchComponent } from '../sketch/sketch.component';
 import { MatIcon } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
@@ -13,6 +12,7 @@ import { MatFormField } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { WorkOrderItemComponent } from './work-order-item/work-order-item.component';
 import { WkSkeletonLoaderComponent } from './wk-skeleton-loader/wk-skeleton-loader.component';
+import { AddWorkOrderComponent } from './add-work-order/add-work-order.component';
 
 @Component({
   selector: 'app-work-order-management',

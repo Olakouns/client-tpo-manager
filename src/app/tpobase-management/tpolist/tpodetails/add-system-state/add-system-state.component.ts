@@ -11,7 +11,7 @@ import {FormBuilder, FormControl, ReactiveFormsModule} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ApiService} from "../../../../services/api.service";
 import {TPOData} from "../../../../models/tpodata";
-import {AddWorkOrderComponent} from "../add-work-order/add-work-order.component";
+import { AddWorkOrderComponent } from '../../../work-order-management/add-work-order/add-work-order.component';
 
 @Component({
   selector: 'app-add-system-state',

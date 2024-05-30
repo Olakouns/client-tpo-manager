@@ -16,11 +16,11 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatSelect, MatSelectModule} from "@angular/material/select";
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {ApiService} from "../../../../services/api.service";
-import {TPOWorkOrder} from "../../../../models/tpowork-order";
-import {XmlEditorComponent} from "../../../../home/xml-editor/xml-editor.component";
 import {MonacoEditorModule} from "ngx-monaco-editor";
-import {HomeModule} from "../../../../home/home.module";
+import { XmlEditorComponent } from '../../../home/xml-editor/xml-editor.component';
+import { HomeModule } from '../../../home/home.module';
+import { TPOWorkOrder } from '../../../models/tpowork-order';
+import { ApiService } from '../../../services/api.service';
 
 @Component({
   selector: 'app-add-work-order',

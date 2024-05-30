@@ -6,7 +6,6 @@ import {Location, NgForOf, NgIf} from '@angular/common';
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {EditTpoComponent} from "../edit-tpo/edit-tpo.component";
 import {TPOData} from "../../../models/tpodata";
-import {AddWorkOrderComponent} from "./add-work-order/add-work-order.component";
 import {MatDialog} from "@angular/material/dialog";
 import {TPOWorkOrder} from "../../../models/tpowork-order";
 import {ApiService} from "../../../services/api.service";
@@ -15,12 +14,12 @@ import {ActivatedRoute} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ToastMessageComponent} from "../../toast-message/toast-message.component";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
-import {workerData} from "worker_threads";
 import {EditFlowComponent} from "./edit-flow/edit-flow.component";
 import {UseWorkOrderComponent} from "./use-work-order/use-work-order.component";
 import {ConfirmationDialogComponent} from "./confirmation-dialog/confirmation-dialog.component";
-import {EditFailureStepWkComponent} from "./edit-failure-step-wk/edit-failure-step-wk.component";
+import {EditFailureStepWkComponent} from "../../work-order-management/edit-failure-step-wk/edit-failure-step-wk.component";
 import {AddSystemStateComponent} from "./add-system-state/add-system-state.component";
+import { AddWorkOrderComponent } from '../../work-order-management/add-work-order/add-work-order.component';
 
 @Component({
   selector: 'app-tpodetails',
@@ -124,24 +123,24 @@ export class TPODetailsComponent implements OnInit {
     })
   }
 
-  onAddWorkOrder() {
-    const dialog = this.dialog.open(AddWorkOrderComponent, {
-      width: '700px',
-      enterAnimationDuration: '250ms',
-      exitAnimationDuration: '250ms',
-      data: {
-        tpoId: this.tpoData.id
-      }
-    });
+  // onAddWorkOrder() {
+  //   const dialog = this.dialog.open(AddWorkOrderComponent, {
+  //     width: '700px',
+  //     enterAnimationDuration: '250ms',
+  //     exitAnimationDuration: '250ms',
+  //     data: {
+  //       tpoId: this.tpoData.id
+  //     }
+  //   });
 
-    dialog.afterClosed().subscribe({
-      next: (response: TPOWorkOrder) => {
-        if (response) {
-          this.tpoWorkOrders.push(response);
-        }
-      }
-    })
-  }
+  //   dialog.afterClosed().subscribe({
+  //     next: (response: TPOWorkOrder) => {
+  //       if (response) {
+  //         this.tpoWorkOrders.push(response);
+  //       }
+  //     }
+  //   })
+  // }
 
   editWorkOrder(wk: TPOWorkOrder, isFailure = false) {
     const dialog = this.dialog.open(AddWorkOrderComponent, {
