@@ -2,23 +2,31 @@ import { Component, Inject } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogActions,
-  MatDialogClose, MatDialogContent,
+  MatDialogClose,
+  MatDialogContent,
   MatDialogRef,
-  MatDialogTitle
-} from "@angular/material/dialog";
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
-import { TPOData } from "../../../models/tpodata";
-import { MatButtonModule } from "@angular/material/button";
-import { MatInputModule } from "@angular/material/input";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatAutocompleteModule } from "@angular/material/autocomplete";
-import { MatSelectModule } from "@angular/material/select";
-import { AsyncPipe, NgForOf, NgIf } from "@angular/common";
-import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-import { MatIconModule } from "@angular/material/icon";
-import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+  MatDialogTitle,
+} from '@angular/material/dialog';
+import {
+  FormBuilder,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { TPOData } from '../../../models/tpodata';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSelectModule } from '@angular/material/select';
+import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ApiService } from '../../../services/api.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ToastMessageComponent } from '../../toast-message/toast-message.component';
 
 @Component({
   selector: 'app-edit-tpo',
@@ -36,14 +44,16 @@ import { HttpErrorResponse } from '@angular/common/http';
     ReactiveFormsModule,
     MatIconModule,
     MatSelectModule,
-    AsyncPipe, NgForOf, MatProgressSpinnerModule, NgIf,
-    MatSlideToggleModule
+    AsyncPipe,
+    NgForOf,
+    MatProgressSpinnerModule,
+    NgIf,
+    MatSlideToggleModule,
   ],
   templateUrl: './edit-tpo.component.html',
-  styleUrl: './edit-tpo.component.scss'
+  styleUrl: './edit-tpo.component.scss',
 })
 export class EditTpoComponent {
-
   form = this.formBuilder.group({
     tpo: ['', [Validators.required]],
     verb: ['', [Validators.required]],
@@ -56,13 +66,16 @@ export class EditTpoComponent {
   isEdit = false;
   diagTitle = 'Add TPO';
   isLoading = false;
-  errorMessage = "";
+  errorMessage = '';
   hasError = false;
 
-  constructor(public dialogRef: MatDialogRef<EditTpoComponent>,
+  constructor(
+    public dialogRef: MatDialogRef<EditTpoComponent>,
+    private _snackBar: MatSnackBar,
     public formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: TPOData,
-    private apiService: ApiService) {
+    private apiService: ApiService
+  ) {
     if (data) {
       this.isEdit = true;
       this.diagTitle = 'Edit TPO';
@@ -73,31 +86,41 @@ export class EditTpoComponent {
 
   onSubmit() {
     if (this.form.invalid) {
-      return
+      return;
     }
 
     this.isLoading = true;
     if (this.isEdit) {
       this.apiService.updateTpoData(this.data.id, this.form.value).subscribe({
-        next: response => {
+        next: (response) => {
+          this._snackBar.openFromComponent(ToastMessageComponent, {
+            data: 'TPO updated successfully!',
+            duration: 5000,
+            panelClass: ['bg-success'],
+          });
           this.dialogRef.close(response);
         },
         error: (error: HttpErrorResponse) => {
-          this.isLoading = false
+          this.isLoading = false;
           this.hasError = true;
           this.errorMessage = error.message;
-        }
+        },
       });
     } else {
       this.apiService.createTpoData(this.form.value).subscribe({
-        next: response => {
+        next: (response) => {
+          this._snackBar.openFromComponent(ToastMessageComponent, {
+            data: 'TPO created successfully!',
+            duration: 5000,
+            panelClass: ['bg-success'],
+          });
           this.dialogRef.close(response);
         },
         error: (error: HttpErrorResponse) => {
-          this.isLoading = false
+          this.isLoading = false;
           this.hasError = true;
           this.errorMessage = error.message;
-        }
+        },
       });
     }
   }

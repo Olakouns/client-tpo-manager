@@ -21,6 +21,9 @@ import { XmlEditorComponent } from '../../../home/xml-editor/xml-editor.componen
 import { HomeModule } from '../../../home/home.module';
 import { TPOWorkOrder } from '../../../models/tpowork-order';
 import { ApiService } from '../../../services/api.service';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ToastMessageComponent } from '../../toast-message/toast-message.component';
 
 @Component({
   selector: 'app-add-work-order',
@@ -37,7 +40,14 @@ import { ApiService } from '../../../services/api.service';
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
-    AsyncPipe, NgForOf, MatProgressSpinnerModule, NgIf, MatSelect, XmlEditorComponent, HomeModule
+    MatSlideToggleModule,
+    AsyncPipe, 
+    NgForOf, 
+    MatProgressSpinnerModule, 
+    NgIf, 
+    MatSelect, 
+    XmlEditorComponent, 
+    HomeModule
   ],
   templateUrl: './add-work-order.component.html',
   styleUrl: './add-work-order.component.scss'
@@ -48,6 +58,7 @@ export class AddWorkOrderComponent {
     webServiceName: ['', [Validators.required]],
     equipment: ['', [Validators.required]],
     webServiceClassName: [''],
+    serviceTemplate: [false],
     template: ['']
   });
 
@@ -67,6 +78,7 @@ export class AddWorkOrderComponent {
 
   constructor(public dialogRef: MatDialogRef<AddWorkOrderComponent>,
               public formBuilder: FormBuilder,
+              private _snackBar: MatSnackBar,
               @Inject(MAT_DIALOG_DATA) public data: {
                 tpoId: number,
                 workOrder: TPOWorkOrder,
@@ -85,11 +97,16 @@ export class AddWorkOrderComponent {
       return
     }
 
-    this.isLoading = true;
+    this.isLoading = true;    
 
     if (this.isEdit) {
       this.apiService.updateTpoWordOrder(this.tpoWorkOrder.id, this.form.value).subscribe({
         next: response => {
+          this._snackBar.openFromComponent(ToastMessageComponent, {
+            data: "Work order updated successfully!",
+            duration: 5000,
+            panelClass: ['bg-success']
+          });
           this.dialogRef.close(response);
         },
         error: (error) => {
@@ -102,6 +119,11 @@ export class AddWorkOrderComponent {
       if (this.data?.tpoId) {
         this.apiService.addTpoWordOrder(this.data.tpoId, this.form.value).subscribe({
           next: response => {
+            this._snackBar.openFromComponent(ToastMessageComponent, {
+              data: "Work order added successfully!",
+              duration: 5000,
+              panelClass: ['bg-success']
+            });
             this.dialogRef.close(response);
           },
           error: (error) => {

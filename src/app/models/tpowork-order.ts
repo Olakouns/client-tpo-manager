@@ -4,7 +4,7 @@ export class TPOWorkOrder {
   id: number;
   webServiceName: string;
   webServiceClassName: string;
-  isServiceTemplate: boolean;
+  serviceTemplate: boolean;
   template: string;
   equipment: string;
   tpoFailureState: TpoFailureState | any;

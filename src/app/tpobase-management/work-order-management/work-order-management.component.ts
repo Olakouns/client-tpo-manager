@@ -13,6 +13,8 @@ import { MatInput } from '@angular/material/input';
 import { WorkOrderItemComponent } from './work-order-item/work-order-item.component';
 import { WkSkeletonLoaderComponent } from './wk-skeleton-loader/wk-skeleton-loader.component';
 import { AddWorkOrderComponent } from './add-work-order/add-work-order.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ToastMessageComponent } from '../toast-message/toast-message.component';
 
 @Component({
   selector: 'app-work-order-management',
@@ -44,6 +46,7 @@ export class WorkOrderManagementComponent implements OnInit {
   size = 50;
 
   constructor(private apiService: ApiService,
+    private _snackBar: MatSnackBar,
     public dialog: MatDialog) {
   }
 
@@ -66,13 +69,15 @@ export class WorkOrderManagementComponent implements OnInit {
     this.apiService.getWorkOrdersPage(this.search, this.page, this.size).subscribe({
       next: response => {
         this.loading = false;
-        this.workOrders = response;
-
-        console.log(response);
-        
+        this.workOrders = response;        
       },
       error: error => {
         this.loading = false;
+        this._snackBar.openFromComponent(ToastMessageComponent, {
+          data: error.message ? error.message : 'Something wrong!',
+          duration: 5000,
+          panelClass: ['bg-danger'],
+        });
       }
     });
   }
