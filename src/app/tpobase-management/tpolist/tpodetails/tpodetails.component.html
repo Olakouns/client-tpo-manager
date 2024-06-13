@@ -18,7 +18,7 @@
         </div>
 
         <div class="d-flex align-items-center tpo-center-mg"
-             [class]="{'tpo-center-mg' : tpoData.critical, 'tpo-center-mg-2': !tpoData.critical}">
+          [class]="{'tpo-center-mg' : tpoData.critical, 'tpo-center-mg-2': !tpoData.critical}">
           <div class="tpo-item-verb tpo-item-verb-2 me-2 d-flex justify-content-center align-items-center">
             <img src="assets/condition.svg" alt="" srcset="" class="w-50">
           </div>
@@ -39,7 +39,8 @@
       </div>
 
       <div class="d-flex justify-content-center align-items-center mt-5">
-        <button *ngIf="tpoData.critical" mat-stroked-button color="primary" class="rounded-5 p-4 flex-row-reverse me-5" (click)="onAddSystemState()">
+        <button *ngIf="tpoData.critical" mat-stroked-button color="primary" class="rounded-5 p-4 flex-row-reverse me-5"
+          (click)="onAddSystemState()">
           Add system state
           <mat-icon class="ms-2 me-0">add</mat-icon>
         </button>
@@ -48,13 +49,6 @@
           Edit flow
           <mat-icon class="ms-2 me-0">edit</mat-icon>
         </button>
-
-        <!-- <button mat-stroked-button color="primary" class="rounded-5 p-4 flex-row-reverse me-5"
-                (click)="onAddWorkOrder()">
-          Add new WK
-          <mat-icon class="ms-2 me-0">add</mat-icon>
-        </button> -->
-
         <button mat-stroked-button color="primary" class="rounded-5 p-4 flex-row-reverse" (click)="onUseWorkOrder()">
           Associate WO
           <mat-icon class="ms-2 me-0">loop</mat-icon>
@@ -76,9 +70,10 @@
               <button mat-icon-button [matMenuTriggerFor]="menu">
                 <mat-icon>more_vert</mat-icon>
               </button>
-              <mat-menu #menu="matMenu">
-                <!-- <button mat-menu-item (click)="editWorkOrder(wk)">Edit</button> -->
-                <!-- <button mat-menu-item (click)="onAddFailureWk(wk)">{{wk.linkedList.length == 0 ? "Add failure WK" : "Update failure WK"}}</button> -->
+              <mat-menu #menu="matMenu" >
+                <button color="accent" mat-menu-item (click)="onAddTpoFailure(wk)">{{wk.tpoFailureState ? 'Update failure TPO' : 'Add failure TPO'}}</button>
+                <button *ngIf="wk.tpoFailureState"  mat-menu-item (click)="onViewTpoFailure(wk)">View failure step</button>
+                <button *ngIf="wk.tpoFailureState"  mat-menu-item (click)="ondeleteTpoFailure(wk)">Remove TPO failure</button>
                 <button mat-menu-item (click)="onRemoveWkFromTpo(wk)">Remove</button>
               </mat-menu>
             </div>
@@ -90,30 +85,25 @@
       </div>
     </div>
 
-    <div class="mt-4">
-      <h5>Work order execution flow in the event of failure</h5>
-      <div class="mt-4 d-flex align-items-center flex-wrap">
-
-        <ng-container *ngFor="let wk of failureTpoWorkOrders; let index = index">
-          <div class="d-flex align-items-center justify-content-between wo-class-2 p-3 rounded-4 col-2 mb-4">
-            <div>
-              <h6 class="wo-class-2-title fw-normal">{{wk?.equipment}}</h6>
-              <h6 class="fw-normal wo-class-2-name">{{wk?.webServiceName}}</h6>
+    <div class="d-flex justify-content-center" *ngIf="isLoadingFailure">
+      <mat-spinner diameter="20" mode="indeterminate"></mat-spinner>
+    </div>
+    <div class="mt-4" *ngIf="failureTpoWorkOrders.length > 0">
+      <div *ngIf="!isLoadingFailure">
+        <h5>Work order execution flow in the event of failure : <span class="simple-chips p-2 fw-normal">{{currentWO.webServiceName}}</span></h5>
+        <div class="mt-4 d-flex align-items-center flex-wrap">
+          <ng-container *ngFor="let wk of failureTpoWorkOrders; let index = index">
+            <div class="d-flex align-items-center justify-content-between wo-class-2 p-3 rounded-4 col-2 mb-4">
+              <div>
+                <h6 class="wo-class-2-title fw-normal">{{wk?.equipment}}</h6>
+                <h6 class="fw-normal wo-class-2-name">{{wk?.webServiceName}}</h6>
+              </div>
             </div>
-            <!-- <div>
-              <button mat-icon-button [matMenuTriggerFor]="menu">
-                <mat-icon>more_vert</mat-icon>
-              </button>
-              <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)="editWorkOrder(wk,true)">Edit</button>
-                               <button mat-menu-item>Delete</button>
-              </mat-menu>
-            </div> -->
-          </div>
-          <div class="wo-class-direction mb-4" *ngIf="failureTpoWorkOrders[index+1] && (index+1)%4 != 0">
-            <img src="assets/arrow_next.svg" class="w-100" alt="" srcset="">
-          </div>
-        </ng-container>
+            <div class="wo-class-direction mb-4" *ngIf="failureTpoWorkOrders[index+1] && (index+1)%4 != 0">
+              <img src="assets/arrow_next.svg" class="w-100" alt="" srcset="">
+            </div>
+          </ng-container>
+        </div>
       </div>
     </div>
   </div>

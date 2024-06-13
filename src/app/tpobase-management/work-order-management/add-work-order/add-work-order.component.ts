@@ -47,6 +47,7 @@ export class AddWorkOrderComponent {
   form = this.formBuilder.group({
     webServiceName: ['', [Validators.required]],
     equipment: ['', [Validators.required]],
+    webServiceClassName: [''],
     template: ['']
   });
 

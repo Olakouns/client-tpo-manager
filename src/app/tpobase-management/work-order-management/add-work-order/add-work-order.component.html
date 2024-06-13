@@ -13,6 +13,10 @@
           <mat-error *ngIf="form.controls['webServiceName']?.hasError('required')">Required field</mat-error>
         </mat-form-field>
 
+        <mat-form-field appearance="outline" class="w-100 mb-3">
+          <input matInput placeholder="response node name" formControlName="webServiceClassName">
+        </mat-form-field>
+
 
         <mat-form-field appearance="outline" class="w-100 mb-3">
           <mat-select formControlName="equipment" placeholder="equipment">

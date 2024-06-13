@@ -7,6 +7,7 @@ import {Page} from "../payload/page";
 import {ApiResponse} from "../payload/api-response";
 import {TPOWorkOrder} from "../models/tpowork-order";
 import {ConstantConfig} from "../models/constant-config";
+import { TpoFailureState } from '../models/tpo-failure-state';
 
 @Injectable({
   providedIn: 'root'
@@ -87,12 +88,16 @@ export class ApiService {
     return this.httpclient.delete<ApiResponse>(`${environment.BASE_URL}/tpo-manager/tpo-word-order/${tpoWordOrderId}`);
   }
 
-  addTpoWordOrderFailureToWK(tpoWordOrderId: number, tpoWorkOrderFailure: TPOWorkOrder): Observable<TPOWorkOrder> {
-    return this.httpclient.put<TPOWorkOrder>(`${environment.BASE_URL}/tpo-manager/tpo-word-order/${tpoWordOrderId}/failure`, tpoWorkOrderFailure);
+  addFailureTpo(tpoDataId : number, tpoFailureState : TpoFailureState): Observable<TpoFailureState> {
+    return this.httpclient.put<TpoFailureState>(`${environment.BASE_URL}/tpo-manager/tpo-data/${tpoDataId}/failure`, tpoFailureState);
   }
 
-  addTpoWordOrderFailuresToWK(tpoWordOrderId: number, tpoWorkOrderFailure: Array<TPOWorkOrder>): Observable<ApiResponse> {
-    return this.httpclient.put<ApiResponse>(`${environment.BASE_URL}/tpo-manager/tpo-word-order/${tpoWordOrderId}/failures`, tpoWorkOrderFailure);
+  updateFailureTpo(tpoFailureStateId: number, tpoDataId : number, tpoFailureState : TpoFailureState): Observable<TpoFailureState> {
+    return this.httpclient.put<TpoFailureState>(`${environment.BASE_URL}/tpo-manager/tpo-data/${tpoDataId}/failure/${tpoFailureStateId}`, tpoFailureState);
+  }
+
+  deleteFailureTpo(tpoFailureStateId: number, tpoDataId : number): Observable<ApiResponse> {
+    return this.httpclient.delete<ApiResponse>(`${environment.BASE_URL}/tpo-manager/tpo-data/${tpoDataId}/failure/${tpoFailureStateId}`);
   }
 
   getAllTpoWordOrders(): Observable<Array<TPOWorkOrder>> {

@@ -1,3 +1,5 @@
+import { TpoFailureState } from "./tpo-failure-state";
+
 export class TPOWorkOrder {
   id: number;
   webServiceName: string;
@@ -5,6 +7,7 @@ export class TPOWorkOrder {
   isServiceTemplate: boolean;
   template: string;
   equipment: string;
-  tpoWorkOrderFailure: Array<TPOWorkOrder>;
-  linkedList: Array<TPOWorkOrder>;
+  tpoFailureState: TpoFailureState | any;
+  // tpoWorkOrderFailure: Array<TPOWorkOrder>;
+  // linkedList: Array<TPOWorkOrder>;
 }

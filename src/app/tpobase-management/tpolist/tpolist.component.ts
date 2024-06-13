@@ -88,7 +88,6 @@ export class TPOListComponent implements OnInit, Loadable {
   }
 
   onDeleteTpo(tpo : TPOData) { 
-    
     const dialog = this.dialog.open(DeleteTpoComponent, {
       width: '700px',
       enterAnimationDuration: '250ms',

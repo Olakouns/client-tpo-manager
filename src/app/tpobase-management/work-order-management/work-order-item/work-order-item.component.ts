@@ -4,8 +4,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
 import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from '../../../services/api.service';
-import { MatButton, MatButtonModule } from '@angular/material/button';
-import { EditFailureStepWkComponent } from '../edit-failure-step-wk/edit-failure-step-wk.component';
+import { MatButtonModule } from '@angular/material/button';
 import { AddWorkOrderComponent } from '../add-work-order/add-work-order.component';
 
 @Component({
@@ -38,27 +37,6 @@ export class WorkOrderItemComponent {
         }
       }
     })
-  }
-
-  onAddFailureWk() {
-    const dialog = this.dialog.open(EditFailureStepWkComponent, {
-      width: '700px',
-      minHeight: '500px',
-      enterAnimationDuration: '250ms',
-      exitAnimationDuration: '250ms',
-      data: JSON.parse(JSON.stringify(
-        {
-          wk: this.wk,
-          failureTpoWorkOrders: []
-        }
-      ))
-    });
-
-    dialog.afterClosed().subscribe({
-      next: (response: TPOWorkOrder) => {
-        this.wk = response;
-      }
-    });
   }
 
 }
