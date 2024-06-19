@@ -21,6 +21,10 @@
     <mat-icon>settings</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
+    <a *ngIf="!isCurrentRoute" mat-menu-item routerLink="/tpo-management">
+      <mat-icon>extension</mat-icon>
+      <span>TPO list</span>
+    </a>
     <a mat-menu-item routerLink="/tpo-management/work-orders">
       <mat-icon>timeline</mat-icon>
       <span>Work orders</span>
