@@ -6,7 +6,7 @@ import { Page } from '../../payload/page';
 import { TPOWorkOrder } from '../../models/tpowork-order';
 import { SketchComponent } from '../sketch/sketch.component';
 import { MatIcon } from '@angular/material/icon';
-import { MatButton } from '@angular/material/button';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatMenu } from '@angular/material/menu';
 import { MatFormField } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
@@ -104,6 +104,22 @@ export class WorkOrderManagementComponent implements OnInit {
   }
 
   onDeleteWK(workOrder: TPOWorkOrder) {
-
+    this.apiService.deleteTpoWordOrder(workOrder.id).subscribe({
+      next: response => {
+        this.workOrders.content = this.workOrders.content.filter(wk => wk.id != workOrder.id);
+        this._snackBar.openFromComponent(ToastMessageComponent, {
+          data: 'Work Order deleted successfully!',
+          duration: 3000,
+          panelClass: ['bg-success'],
+        });
+      },
+      error: error => {
+        this._snackBar.openFromComponent(ToastMessageComponent, {
+          data: error.message ? error.message : 'Something wrong!',
+          duration: 3000,
+          panelClass: ['bg-danger'],
+        });
+      }
+    });
   }
 }

@@ -3,13 +3,13 @@ import { Slide } from '../../payload/slide';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-sketch',
   standalone: true,
-  imports: [MatIconModule, MatMenuModule, MatButtonModule, NgIf],
+  imports: [MatIconModule, MatMenuModule, MatButtonModule, NgIf, RouterLink],
   templateUrl: './sketch.component.html',
   styleUrl: './sketch.component.scss'
 })
@@ -18,7 +18,6 @@ export class SketchComponent {
   isCurrentRoute: boolean = false;
 
   constructor(private router: Router) {
-    this.isCurrentRoute = this.router.url === "/tpo-management";
-    console.log(this.isCurrentRoute); 
+    this.isCurrentRoute = this.router.url === "/tpo-management"; 
   }
 }

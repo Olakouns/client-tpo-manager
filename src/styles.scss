@@ -142,6 +142,31 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   padding: 16px;
 }
 
+/* Style de la scrollbar pour mat-dialog-content */
+mat-dialog-content::-webkit-scrollbar {
+  width: 8px; /* Largeur de la scrollbar verticale */
+  height: 8px; /* Hauteur de la scrollbar horizontale */
+}
+
+mat-dialog-content::-webkit-scrollbar-thumb {
+  background: #888; /* Couleur du "pouce" (la partie déplaçable de la scrollbar) */
+  border-radius: 4px; /* Bordures arrondies du pouce */
+}
+
+mat-dialog-content::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Couleur du pouce au survol */
+}
+
+mat-dialog-content::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Couleur de la piste (la partie fixe de la scrollbar) */
+  border-radius: 4px; /* Bordures arrondies de la piste */
+}
+
+mat-dialog-content::-webkit-scrollbar-track:hover {
+  background: #e1e1e1; /* Couleur de la piste au survol */
+}
+
+
 
 .wo-class{
   background-color: rgba(174, 245, 150, 0.5);

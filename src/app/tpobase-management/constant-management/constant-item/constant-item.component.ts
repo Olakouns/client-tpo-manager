@@ -4,6 +4,9 @@ import {MatIconButton} from "@angular/material/button";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import {TPOData} from "../../../models/tpodata";
 import {ConstantConfig} from "../../../models/constant-config";
+import { MatDialog } from '@angular/material/dialog';
+import { ApiService } from '../../../services/api.service';
+import { EditConstantComponent } from '../edit-constant/edit-constant.component';
 
 @Component({
   selector: 'app-constant-item',
@@ -23,10 +26,26 @@ export class ConstantItemComponent {
   @Input({required: true}) constantConfig : ConstantConfig;
   @Output() onDelete : EventEmitter<ConstantConfig> = new EventEmitter<ConstantConfig>();
 
-  constructor() {
+  constructor( public dialog: MatDialog,
+    private apiService: ApiService
+  ) {
   }
-  onEditConstant() {
 
+  onEditConstant() {
+    const dialog = this.dialog.open(EditConstantComponent, {
+      width: '700px',
+      enterAnimationDuration: '250ms',
+      exitAnimationDuration: '250ms',
+      data: JSON.parse(JSON.stringify(this.constantConfig))
+    });
+
+    dialog.afterClosed().subscribe({
+      next: (response: ConstantConfig) => {
+        if (response) {
+          this.constantConfig = response;
+        }
+      }
+    })
   }
 
   getConstantName(keyName: string) {

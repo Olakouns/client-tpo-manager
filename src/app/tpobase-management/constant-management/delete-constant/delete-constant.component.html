@@ -4,13 +4,11 @@
         <div *ngIf="hasError" class="alert alert-danger">
             {{errorMessage}}
         </div>
-        <p class="mt-4 text-center mb-0">Do you want to remove this TPO ?</p>
+        <p class="mt-4 text-center mb-0">Do you want to remove this network element?</p>
     </div>
 </mat-dialog-content>
 <mat-dialog-actions class="d-flex justify-content-center w-100 p-4">
-    <button mat-flat-button color="warn"(click)="onDeleteTpo()" class="rounded-5 p-4 me-4" *ngIf="!isDeleting">Yes</button>
+    <button mat-flat-button color="warn"(click)="onDeleteConstant()" class="rounded-5 p-4 me-4" *ngIf="!isDeleting">Yes</button>
     <button mat-flat-button color="primary" mat-dialog-close class="rounded-5 p-4" *ngIf="!isDeleting">No</button>
-
     <mat-spinner diameter="25" color="primary" *ngIf="isDeleting"></mat-spinner>
 </mat-dialog-actions>
-  
