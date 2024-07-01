@@ -1,0 +1,37 @@
+<!-- HLR API -->
+<content>
+    <hrl>
+        <activateSubscriberRequest xmlns="http://esmt.sn/hlr_api/soam">
+            <name>${subscriberName}</name>
+            <phoneNumber>${phoneNumber}</phoneNumber>
+            <imsi>${imsi}</imsi>
+            <subscriberType>${subscriberType}</subscriberType>
+        </activateSubscriberRequest>
+
+        <deactivateSubscriberRequest xmlns="http://esmt.sn/hlr_api/soam" phoneNumber="${phoneNumber}" />
+    
+        <modifyServiceSubscriberRequest xmlns="http://esmt.sn/hlr_api/soam" phoneNumber="${phoneNumber}" verb="ADD">
+            <service>
+                <serviceType>${serviceType}</serviceType>
+                <targetNumber>${targetNumber}</targetNumber>
+                <active>${active}</active>
+            </service>
+        </modifyServiceSubscriberRequest>
+        <displaySubscriberRequest xmlns="http://esmt.sn/hlr_api/soam" phoneNumber="${phoneNumber}" />
+    </hrl>
+    <in>
+        <newConnectionRequest xmlns="http://esmt.sn/in_api/soam">
+            <name>${subscriberName}</name>
+            <phoneNumber>${phoneNumber}</phoneNumber>
+            <imsi>${imsi}</imsi>
+        </newConnectionRequest> 
+        <terminationRequest phoneNumber="${phoneNumber}" xmlns="http://esmt.sn/in_api/soam"/>
+
+        <rechargingRequest xmlns="http://esmt.sn/in_api/soam" phoneNumber="${phoneNumber}">
+            <dataBalance>${dataBalance}</dataBalance>
+            <callBalance>${callBalance}</callBalance>
+            <smsBalance>${smsBalance}</smsBalance>
+        </rechargingRequest>
+        <displaySubscriberRequest xmlns="http://esmt.sn/in_api/soam" phoneNumber="${phoneNumber}" />
+    </in>
+</content>

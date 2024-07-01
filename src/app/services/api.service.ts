@@ -76,6 +76,10 @@ export class ApiService {
     return this.httpclient.put<ApiResponse>(`${environment.BASE_URL}/tpo-manager/tpo-data/${tpoDataId}/tpo-word-orders/add-many`, tpoWorkOrders);
   }
 
+  addTpoPreviousState(tpoDataId: number, tpoWorkOrders: Array<TPOWorkOrder>): Observable<TpoFailureState> {
+    return this.httpclient.put<TpoFailureState>(`${environment.BASE_URL}/tpo-manager/tpo-data/${tpoDataId}/previous-state`, tpoWorkOrders);
+  }
+
   removeTpoWordOrder(tpoDataId: number, tpoWordOrderId: number): Observable<ApiResponse> {
     return this.httpclient.delete<ApiResponse>(`${environment.BASE_URL}/tpo-manager/tpo-data/${tpoDataId}/tpo-word-order/${tpoWordOrderId}`);
   }

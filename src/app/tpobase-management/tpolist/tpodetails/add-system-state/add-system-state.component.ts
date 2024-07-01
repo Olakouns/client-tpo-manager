@@ -93,6 +93,17 @@ export class AddSystemStateComponent implements OnInit {
 
   onSave() {
     this.isLoading = true;
+    this.apiService.addTpoPreviousState(this.data.id, this.tpoWorkSelected).subscribe({
+      next: response => {
+        this.isLoading = false;
+        this.dialogRef.close(this.tpoWorkSelected);
+      },
+      error: error => {
+        this.isLoading = false;
+        this.hasError = true;
+        this.errorMessage = error.message;
+      }
+    });
     // todo : save data into tpo_data previous state
   }
 

@@ -157,7 +157,7 @@ export class TPODetailsComponent implements OnInit {
       next: (response: Array<TPOWorkOrder>) => {
         if (response.length > 0) {
           this.tpoWorkOrders.push(...response);
-          this.updateFailureWk();
+          // this.updateFailureWk();
           // console.log(response);
           // this.tpoWorkOrders = [...this.tpoWorkOrders, ...response];
         }
@@ -181,7 +181,7 @@ export class TPODetailsComponent implements OnInit {
               this.tpoWorkOrders = this.tpoWorkOrders.filter(
                 (item) => item.id != wk.id
               );
-              this.updateFailureWk();
+              // this.updateFailureWk();
             },
             error: (error: HttpErrorResponse) => {
               this._snackBar.openFromComponent(ToastMessageComponent, {
