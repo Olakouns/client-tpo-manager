@@ -31,7 +31,7 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
   styleUrl: './use-work-order.component.scss'
 })
 export class UseWorkOrderComponent implements OnInit {
-  diagTitle = 'Use existing work order';
+  diagTitle = 'Add Work orders to TPO';
   isLoading = false;
   errorMessage = "";
   hasError = false;
