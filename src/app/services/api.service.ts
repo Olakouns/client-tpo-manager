@@ -35,7 +35,7 @@ export class ApiService {
   }
 
   updateTpoData(tpoDataId: number, tpoData: TPOData | any): Observable<TPOData> {
-    return this.httpclient.put<TPOData>(`${environment.BASE_URL}/tpo-manager/tpo-data/${tpoDataId}`, tpoData);
+    return this.httpclient.put<TPOData>(`${environment.BASE_URL}/tpo-manager/tpo-data/${tpoDataId}/edit`, tpoData);
   }
 
   getTpoDataById(tpoDataId: number): Observable<TPOData> {
