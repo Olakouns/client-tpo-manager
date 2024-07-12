@@ -18,6 +18,11 @@ export class SketchComponent {
   isCurrentRoute: boolean = false;
 
   constructor(private router: Router) {
-    this.isCurrentRoute = this.router.url === "/tpo-management"; 
+    this.isCurrentRoute = this.router.url === "/tpo-management";
+  }
+
+  onLogout() {
+    localStorage.clear();
+    this.router.navigateByUrl('/').then();
   }
 }
