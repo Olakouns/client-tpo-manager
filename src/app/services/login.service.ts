@@ -19,7 +19,7 @@ export class LoginService {
   }
 
   login(loginInfo: any): Observable<ApiResponse> {
-    return this.httpclient.post<UserData>(`${environment.BASE_LOGIN_URL}/login`, loginInfo).pipe(map((response: any) => {      
+    return this.httpclient.post<UserData>(`${environment.BASE_LOGIN_URL}/login`, loginInfo).pipe(map((response: any) => {
       localStorage.setItem("token", JSON.stringify(response));
       return response;
     }));
